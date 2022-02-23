@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserCinemaController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 10px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>Hello
+
+			{% if users|length == 0 %}
+				Il n'y a pas d'utilisateur connecté pour le moment.
+			{% endif %}
+			<ul>
+				{% for users in users %}
+					<li>
+						{{ users.NameUser }}
+						{{ users.UserSurname }}
+					</li>
+				{% endfor %}
+			</li>
+		</ul>
+	</div>
+{% endblock %}

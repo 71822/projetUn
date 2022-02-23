@@ -1,3 +1,13 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+# index:
+#     path: /
+#     controller: App\Controller\DefaultController::index
+
+# test:
+#     path: /test
+#     controller: App\Controller\DefaultController::test
+
+# test:
+#     path: /profil/{prenom}
+#     controller: App\Controller\DefaultController::profile
+#     defaults: 
+#     prenom: Séverine

@@ -2,19 +2,22 @@
 {% block title %}Listing films
 {% endblock %}
 {% block body %}
-	<div>Liste des films disponibles :</div>
+	<div style="margin-left: 300px; margin-bottom: 50px;">Liste des films disponibles :</div>
 	{% if films|length == 0 %}
 		Il n'y a pas de film disponible pour le moment.
 	{% endif %}
-	<ul>
+	<ul style="margin-left: 300px;">
 		{% for film in films %}
 			<li>
-				<a href="">
-					{{ film.title }}
-				</a>
+
+				<a href="{{ path('showFilm', {'id': film.id } ) }}">{{film.title}}</a>
+
+
 				de
 				{{ film.realisateur }}, genre :
 				{{ film.genre }}.
+				<a href="{{ path('updateFilm', {'id': film.id } ) }}">Editer</a>
+				<a href="{{ path('deleteFilm', {'id': film.id } ) }}">Supprimer</a>
 			</li>
 		{% endfor %}
 	</li>

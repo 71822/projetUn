@@ -1,9 +1,8 @@
-<style>
-	* {
+<style>/* * {
 		box-sizing: border-box;
 		z-index: 1000;
-	}
-	nav {
+	} */
+/* nav {
 		height: 70px;
 		width: 100%;
 		padding-top: 25px;
@@ -23,12 +22,11 @@
 	}
 	nav a:hover {
 		color: blue;
-	}
-</style>
-
-<nav>
+	} */</style><nav>
+<div class="nav">
 	<a href="{{ path('accueil') }}">Accueil</a>
 	<a href="{{ path('listingFilm') }}">Listing</a>
 	<a href="{{ path('propos') }}">A propos</a>
 	<a href="{{ path('user') }}">Utilisateur</a>
-</nav>
+	<a href="{{ path('createFilm') }}">Créer un film</a>
+</div></nav>

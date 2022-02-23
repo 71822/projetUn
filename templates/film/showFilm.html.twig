@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block title %}Film
+{% endblock %}
+{% block body %}
+
+	<div style="margin-left: 300px; margin-bottom: 50px;">Film show:</div>
+	<ul style="margin-left: 300px;">
+
+
+		{{ film.img }}
+		{{ film.title }}
+		{{ film.realisateur }}
+		{{ film.genre }}
+		<a href="{{ path('listingFilm') }}">Retour à la liste</a>
+
+
+	</ul>
+{% endblock %}

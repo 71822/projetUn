@@ -2,23 +2,45 @@
 {% block title %}Listing films
 {% endblock %}
 {% block body %}
-	<div style="margin-left: 300px; margin-bottom: 50px;">Liste des films disponibles :</div>
+	<div class="w-100 text-center" style="">
+		<img class="" src="/img/affiche.png">
+	</div>
 	{% if films|length == 0 %}
 		Il n'y a pas de film disponible pour le moment.
 	{% endif %}
-	<ul style="margin-left: 300px;">
-		{% for film in films %}
-			<li>
+	<div class="container">
+		<div class="row">
+			{% for film in films %}
 
-				<a href="{{ path('showFilm', {'id': film.id } ) }}">{{film.title}}</a>
+				<a href="{{ path('showFilm', {'id': film.id } ) }}">
+					<div class="col-xl-4 col-md-4 col-lg-3 col-6 mb-4 px-xl-5 px-lg-4 px-md-3">
+						<div class="border">
+							<div class="text-center mt-1">
+								<img style="max-width: 230px;" src="/img/{{ film.img }}">
+							</div>
+							<div style="color: black; !important ">
+								<h4 class="text-center pt-2">
+									{{film.title}}
+								</h4>
+
+								<div class="text-center">
+									{{ film.realisateur }}
+								</div>
+								<div class="text-center">
+									{{ film.genre }}.
+								</div>
+								<div class="text-center">
+									<a href="{{ path('updateFilm', {'id': film.id } ) }}">Editer</a>
+									<a href="{{ path('deleteFilm', {'id': film.id } ) }}">Supprimer</a>
+								</div>
+							</div>
+
+						</a>
+					</div>
+				</div>
 
 
-				de
-				{{ film.realisateur }}, genre :
-				{{ film.genre }}.
-				<a href="{{ path('updateFilm', {'id': film.id } ) }}">Editer</a>
-				<a href="{{ path('deleteFilm', {'id': film.id } ) }}">Supprimer</a>
-			</li>
-		{% endfor %}
-	</li>
-</ul>{% endblock %}
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

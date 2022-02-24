@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Films;
+use App\Form\FilmType;
 use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\Constraint\IsEmpty;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,74 +11,50 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class FilmController extends AbstractController
 {
-    // /**
-    //  * @Route("/film_accueil", name="film_accueil")
-    //  */
-    // public function accueil()
-    // {
-    //     return $this->render("film/index.html.twig");
-    // }
-
-
     /**
      * @Route("/createFilm", name="createFilm")
      * @Route("/updateFilm/{id}", name="updateFilm")
      */
-    public function index(Request $request, ManagerRegistry $doctrine, $id = null): Response
+    public function index(Films $film = null, Request $request, ManagerRegistry $doctrine, ValidatorInterface $validator)
     {
         $entityManager = $doctrine->getManager();
-        $isEditor = false;
 
 
-
-        if (isset($id)) {
-            $films = $entityManager->getRepository(Films::class)->find($id);
-            if (!isset($films)) {
-                return $this->redirectToRoute('listingFilm');
-            }
-            $isEditor = true;
-        } else {
-            $films = new Films;
+        if (!$film) {
+            $film = new Films;
         }
 
 
-
-
-        $form = $this->createFormBuilder($films)
-            ->add("title", TextType::class, [
-                'required' => true,
-            ])
-
-            ->add("realisateur", TextType::class)
-            ->add("genre", TextType::class)
-            ->add('save', SubmitType::class, ['label' => 'Create Film'])
-            ->getForm();
-
+        $form = $this->createForm(FilmType::class, $film);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $films = $form->getData();
-
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($films);
+            $film = $form->getData();
+            $entityManager->persist($film);
             $entityManager->flush();
 
 
             return $this->redirectToRoute('listingFilm');
         }
 
+        $errors = $validator->validate($film);
         return $this->render('film/createFilm.html.twig', [
             'form' => $form->createView(),
-            'isEditor' => $isEditor
+            'isEditor' => $film->getId(),
+            'errors' => $errors
 
         ]);
     }
+
+
+
 
     /**
      * @Route("/listingFilm", name="listingFilm")

@@ -3,16 +3,16 @@
 {% endblock %}
 {% block body %}
 
-	<div style="margin-left: 300px; margin-bottom: 50px;">Film show:</div>
-	<ul style="margin-left: 300px;">
+	<div style="margin-left: 300px; margin-bottom: 50px;"></div>
+	<div class="m-5 p-5">
 
 
-		{{ film.img }}
+		<img src="/img/{{ film.img }}">
 		{{ film.title }}
 		{{ film.realisateur }}
 		{{ film.genre }}
 		<a href="{{ path('listingFilm') }}">Retour à la liste</a>
 
 
-	</ul>
+	</div>
 {% endblock %}

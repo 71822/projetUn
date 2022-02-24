@@ -10,19 +10,22 @@
 	<div>
 		{{form_label(form)}}
 	</div>
-	{{form_row(form.title, {'label': 'title: '}) }}
+	{{form_row(form.title, {'label': 'Titre: '}) }}
 	<div></div>
-	{{form_row(form.realisateur, {'label': 'realisateur: '}) }}
+	{{form_row(form.realisateur, {'label': 'Realisateur: '}) }}
 	<div></div>
-	{{form_row(form.genre, {'label': 'genre: '}) }}
+	{{form_row(form.genre, {'label': 'Genre: '}) }}
 	<div></div>
+	{{form_row(form.img, {'label': 'Lien image: '}) }}
+	<div></div>
+	{{form_row(form.save, {'label': 'Save'}) }}
+</div>
 
-	{% if (isEditor) %}
-		{{form_row(form.save, {'label': 'edit'}) }}
-	{% else %}
-		{{form_row(form.save, {'label': 'submit'}) }}
-	{% endif %}
+{% for error in errors %}
+	<li>
+		{{ error.message }}
+	</li>
+{% endfor %}
 
 
-	{{form_end(form) }}
-{% endblock %}
+{{form_end(form) }}{% endblock %}

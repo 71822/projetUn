@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\FilmsRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\FilmsRepository;
 
 /**
  * @ORM\Entity(repositoryClass=FilmsRepository::class)
@@ -19,11 +20,13 @@ class Films
 
     /**
      * @ORM\Column(type="string", length=300)
+     * @Assert\NotBlank(message="Le champs n'est pas valide")
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=200)
+     * 
      */
     private $realisateur;
 

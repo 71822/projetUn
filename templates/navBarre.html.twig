@@ -1,32 +1,14 @@
-<style>/* * {
-		box-sizing: border-box;
-		z-index: 1000;
-	} */
-/* nav {
-		height: 70px;
-		width: 100%;
-		padding-top: 25px;
-		text-align: center;
-		background: gray;
-		margin-bottom: 50px;
-	}
-	nav a {
-		font-size: 20px;
-		padding-left: 15px;
-		padding-right: 15px;
-		margin-top: 25px;
-		text-align: center;
-		color: white;
-		font-weight: bold;
-		text-decoration: none;
-	}
-	nav a:hover {
-		color: blue;
-	} */</style><nav>
-<div class="nav">
-	<a href="{{ path('accueil') }}">Accueil</a>
-	<a href="{{ path('listingFilm') }}">Listing</a>
-	<a href="{{ path('propos') }}">A propos</a>
-	<a href="{{ path('user') }}">Utilisateur</a>
-	<a href="{{ path('createFilm') }}">Créer un film</a>
-</div></nav>
+<div class="beforNav">
+	<img src="/img/logo.png">
+</div>
+<nav>
+
+	<div class="nav stiky">
+		<a href="{{ path('accueil') }}">Accueil</a>
+		<a href="{{ path('listingFilm') }}">Listing</a>
+		<a href="{{ path('propos') }}">A propos</a>
+		<a href="{{ path('user') }}">Utilisateur</a>
+		<a href="{{ path('createFilm') }}">Créer un film</a>
+	</div>
+
+</nav>

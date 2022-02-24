@@ -10,6 +10,12 @@
 	<div>
 		{{form_label(form)}}
 	</div>
+
+	<div></div>
+	{{form_row(form.duree, {'label': 'Durée: '}) }}
+	<div></div>
+	{{form_row(form.status, {'label': 'Status: '}) }}
+	<div></div>
 	{{form_row(form.title, {'label': 'Titre: '}) }}
 	<div></div>
 	{{form_row(form.realisateur, {'label': 'Realisateur: '}) }}
@@ -18,14 +24,18 @@
 	<div></div>
 	{{form_row(form.img, {'label': 'Lien image: '}) }}
 	<div></div>
+
+
 	{{form_row(form.save, {'label': 'Save'}) }}
 </div>
 
-{% for error in errors %}
-	<li>
-		{{ error.message }}
-	</li>
-{% endfor %}
+{# {% if (error) %}
+	{% for error in errors %}
+		<li>
+			{{ error.message }}
+		</li>
+	{% endfor %}
+{% endif %} #}
 
 
 {{form_end(form) }}{% endblock %}

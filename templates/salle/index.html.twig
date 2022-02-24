@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salle index
+{% endblock %}
+
+{% block body %}
+	<h1>Salle index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Date de création</th>
+				<th>N° de sSalle</th>
+				<th>Nb de place</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for salle in salles %}
+				<tr>
+					<td>{{ salle.createdAt ? salle.createdAt|date('d-m-Y') : '' }}</td>
+					<td>{{ salle.numeroSalle }}</td>
+					<td>{{ salle.nbPlace }}</td>
+					<td>
+						<a href="{{ path('salle_show', {'id': salle.id}) }}">show</a>
+						<a href="{{ path('salle_edit', {'id': salle.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('salle_new') }}">Create new</a>
+{% endblock %}

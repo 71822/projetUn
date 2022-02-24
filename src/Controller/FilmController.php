@@ -9,6 +9,7 @@ use PHPUnit\Framework\Constraint\IsEmpty;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -35,6 +36,11 @@ class FilmController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if (!$film->getId()) {
+                $film->setCreatedAt(new \DateTimeImmutable("now"));
+            }
+            $film->setUpdatedAt(new \DateTime("now"));
 
             $film = $form->getData();
             $entityManager->persist($film);

@@ -19,22 +19,27 @@ class SeanceRepository extends ServiceEntityRepository
         parent::__construct($registry, Seance::class);
     }
 
+
+
     // /**
     //  * @return Seance[] Returns an array of Seance objects
     //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+
+    // public function lastResultSeance($lastSeance)
+    // {
+    //     $entityManager = $this->getEntityManager();
+
+    //     $query = $entityManager->createQuery(
+    //         'SELECT 
+    //         FROM App\Entity\Product p
+    //         WHERE p.price > :price
+    //         ORDER BY p.price ASC'
+    //     )->setParameter('price', $price);
+
+    //     // returns an array of Product objects
+    //     return $query->getResult();
+    // }
+
 
     /*
     public function findOneBySomeField($value): ?Seance

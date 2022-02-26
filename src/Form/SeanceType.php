@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+
 use App\Entity\Films;
 use App\Entity\Salle;
 use App\Entity\Seance;
@@ -9,18 +10,17 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class SeanceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dateDebut')
+            ->add('dateDebut', DateTimeType::class, ["widget" => "single_text"])
             ->add('lang')
-            // ->add('createdAt')
-            // ->add('updatedAt')
-            ->add('films', EntityType::class, ["class" => Films::class, "choice_label" => "title"]);
-        //->add('salle', EntityType::class, ["class" => Salle::class, "choice_label" => "salle"]);
+            ->add('films', EntityType::class, ["class" => Films::class, "choice_label" => "title"])
+            ->add('salle', EntityType::class, ["class" => Salle::class, "choice_label" => "numeroSalle"]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

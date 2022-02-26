@@ -77,16 +77,6 @@ class Films
         $this->seances = new ArrayCollection();
     }
 
-    // /**
-    //  * @ORM\Column(type="datetime_immutable")
-    //  */
-    // private $Seance;
-
-    // public function __construct()
-    // {
-    //     $this->seances = new ArrayCollection();
-    // }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -140,36 +130,6 @@ class Films
         return $this;
     }
 
-    // /**
-    //  * @return Collection<int, Seance>
-    //  */
-    // public function getSeances(): Collection
-    // {
-    //     return $this->seances;
-    // }
-
-    // public function addSeance(Seance $seance): self
-    // {
-    //     if (!$this->seances->contains($seance)) {
-    //         $this->seances[] = $seance;
-    //         $seance->setFilms($this);
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function removeSeance(Seance $seance): self
-    // {
-    //     if ($this->seances->removeElement($seance)) {
-    //         // set the owning side to null (unless already changed)
-    //         if ($seance->getFilms() === $this) {
-    //             $seance->setFilms(null);
-    //         }
-    //     }
-
-    //     return $this;
-    // }
-
     public function getDuree(): ?int
     {
         return $this->duree;
@@ -218,17 +178,17 @@ class Films
         return $this;
     }
 
-    // public function getSeance(): ?\DateTimeImmutable
-    // {
-    //     return $this->Seance;
-    // }
+    public function getSeance(): ?\DateTimeImmutable
+    {
+        return $this->Seance;
+    }
 
-    // public function setSeance(\DateTimeImmutable $Seance): self
-    // {
-    //     $this->Seance = $Seance;
+    public function setSeance(\DateTimeImmutable $Seance): self
+    {
+        $this->Seance = $Seance;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     /**
      * @return Collection<int, Seance>

@@ -2,31 +2,49 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Films;
+use App\Entity\Seance;
+use App\Repository\FilmsRepository;
+use App\Repository\SeanceRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class NavController extends AbstractController
 {
     /**
-     * @Route("/", name="accueil")
+     * @Route("/", name="accueil", methods={"GET"})
      */
-    public function accueil()
+    public function listingFilm(FilmsRepository $filmRepository, SeanceRepository $seanceRepository, ManagerRegistry $doctrine): Response
     {
-        return $this->render("navigation/accueil.html.twig");
+
+
+        return $this->render('film/listingFilm.html.twig', [
+            'films' => $filmRepository->findAll(),
+            'seance' => $seanceRepository->findAll(),
+        ]);
     }
-
-
 
     /**
-     * @Route("/propos", name="propos")
+     * @Route("/showFilm/{id}", name="showFilm")
      */
-    public function propos()
+    public function show(ManagerRegistry $doctrine, $id)
     {
-        // if (!isEmpty($films)) {
-        //     return $this->redirectToRoute('accueil');
-        // }
-        return $this->render("navigation/propos.html.twig");
+        $entityManager = $doctrine->getManager();
+        $film = $entityManager->getRepository(Films::class)->find($id);
+        $seance = $entityManager->getRepository(Seance::class)->findBy(array("films" => $id));
+
+
+        return $this->render("navigation/showFilm.html.twig", ["film" => $film, "seance" => $seance,]);
     }
+
+
+    //     // if (!isEmpty($films)) {
+    //     //     return $this->redirectToRoute('accueil');
+    //     // }
+    //     return $this->render("navigation/propos.html.twig");
+    // }
 
 
 

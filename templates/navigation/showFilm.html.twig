@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+{% block title %}Film
+{% endblock %}
+{% block body %}
+
+	<div style="margin-left: 300px; margin-bottom: 50px;"></div>
+	<div class="m-5 p-5">
+
+
+		<img src="/img/{{ film.img }}">
+		{{ film.title }}
+		{{ film.realisateur }}
+		{{ film.genre }}
+
+		{% if seance|length == 0 %}
+			Bientôt dans nos salles !
+		{% endif %}
+
+		{% for seance in seance %}
+			<li>
+				{{ seance.dateDebut ? seance.dateDebut|date('d-m-Y') : ''  }}
+				{{ seance.dateDebut ? seance.dateDebut|date('H:i') : ''  }}
+			</li>
+		{% endfor %}
+
+
+		<a href="{{ path('accueil') }}">Retour à la liste</a>
+
+
+	</div>
+{% endblock %}

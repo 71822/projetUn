@@ -10,31 +10,43 @@
 	{% endif %}
 	<div class="container">
 		<div class="row">
-			{% for film in films %}
+			{% for films in films %}
 
-				<a href="{{ path('showFilm', {'id': film.id } ) }}">
+				<a href="{{ path('showFilm', {'id': films.id } ) }}">
 					<div class="col-xl-4 col-md-4 col-lg-3 col-6 mb-4 px-xl-5 px-lg-4 px-md-3">
 						<div class="border">
-							<div class="text-center mt-1">
-								<img style="max-width: 230px;" src="/img/{{ film.img }}">
+							<div class="text-center mt-4">
+								<img style="max-width: 80%;" src="/img/{{ films.img }}">
 							</div>
 							<div style="color: black; !important ">
 								<h4 class="text-center pt-2">
-									{{film.title}}
+									{{films.title}}
 								</h4>
 
 								<div class="text-center">
-									{{ film.realisateur }}
+									{{ films.realisateur }}
 								</div>
 								<div class="text-center">
-									{{ film.genre }}.
-								</div>
-								<div class="text-center">
-									<a href="{{ path('updateFilm', {'id': film.id } ) }}">Editer</a>
-									<a href="{{ path('deleteFilm', {'id': film.id } ) }}">Supprimer</a>
-								</div>
-							</div>
+									{{ films.genre }}.
 
+								</div>
+
+								<div class="text-center">
+									Prochaines séances le :
+
+								</div>
+								{% for seance in seance %}
+									{% if seance.films.id == films.id %}
+										<div class="pl-5">
+											{{ seance.dateDebut ? seance.dateDebut|date('d-m-Y') : '' }}
+											à
+											{{ seance.dateDebut ? seance.dateDebut|date('H:i') : ''  }}
+										</div>
+									{% endif %}
+								{% endfor %}
+
+
+							</div>
 						</a>
 					</div>
 				</div>

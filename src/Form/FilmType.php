@@ -20,8 +20,8 @@ class FilmType extends AbstractType
             ->add('genre')
             ->add('duree', NumberType::class)
             ->add('status')
-            ->add('img')
-            ->add('save', SubmitType::class);
+            ->add('img');
+        // ->add('save', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

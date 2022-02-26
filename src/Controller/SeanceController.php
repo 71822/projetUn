@@ -37,9 +37,7 @@ class SeanceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if (!$seance->getId()) {
-                $seance->setCreatedAt(new \DateTimeImmutable("now"));
-            }
+            $seance->setCreatedAt(new \DateTimeImmutable("now"));
             $seance->setUpdatedAt(new \DateTime("now"));
 
             //dd($seance);

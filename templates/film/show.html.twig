@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Film
+{% endblock %}
+
+{% block body %}
+	<h1>Film</h1>
+
+	<table class="table">
+		<tbody>
+
+			<tr>
+				<td><img style="max-height: 100px;" src="/img/{{ films.img }}"></td>
+			</tr>
+
+			<tr>
+
+				<td>
+					<div>{{ films.title }}</div>
+					<div>{{ films.realisateur  }}</div>
+					<div>{{ films.genre }}</div>
+					<div>{{ films.duree }}</div>
+					<div>{{ films.status }}</div>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+
+	<a href="{{ path('film_index') }}">back to list</a>
+
+	<a href="{{ path('film_edit', {'id': films.id}) }}">edit</a>
+
+	{{ include('film/_delete_form.html.twig') }}
+{% endblock %}

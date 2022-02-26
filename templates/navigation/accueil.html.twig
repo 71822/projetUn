@@ -1,8 +1,46 @@
 {% extends "base.html.twig" %}
-{% block title %}Accueil
+{% block title %}Listing films
 {% endblock %}
 {% block body %}
-	<div style="width: 100%">
-		<img style="max-width: 100%" src=" /img/fondCine.jpg">
+	<div class="w-100 text-center" style="">
+		<img class="" src="/img/affiche.png">
+	</div>
+	{% if films|length == 0 %}
+		Il n'y a pas de film disponible pour le moment.
+	{% endif %}
+	<div class="container">
+		<div class="row">
+			{% for films in films %}
+
+				<a href="{{ path('showFilm', {'id': films.id } ) }}">
+					<div class="col-xl-4 col-md-4 col-lg-3 col-6 mb-4 px-xl-5 px-lg-4 px-md-3">
+						<div class="border">
+							<div class="text-center mt-1">
+								<img style="max-width: 230px;" src="/img/{{ films.img }}">
+							</div>
+							<div style="color: black; !important ">
+								<h4 class="text-center pt-2">
+									{{films.title}}
+								</h4>
+
+								<div class="text-center">
+									{{ films.realisateur }}
+								</div>
+								<div class="text-center">
+									{{ films.genre }}.
+								</div>
+								<div class="text-center">
+									<a href="{{ path('updateFilm', {'id': films.id } ) }}">Editer</a>
+									<a href="{{ path('deleteFilm', {'id': films.id } ) }}">Supprimer</a>
+								</div>
+							</div>
+
+						</a>
+					</div>
+				</div>
+
+
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}
